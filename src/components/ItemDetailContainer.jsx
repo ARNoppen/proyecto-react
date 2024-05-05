@@ -4,12 +4,11 @@ import Container from 'react-bootstrap/Container';
 
 import data from "../data/Products.json";
 
-import {ItemList} from "./ItemList";
 
 console.log(data)
 
-export const ItemListContainer = () => {
-    const [Products, setProducts] = useState([])
+export const ItemDetailContainer = () => {
+    const [Product, setProduct] = useState(null)
 
     useEffect(() => {
         const get = new Promise((resolve, reject) => {
@@ -17,13 +16,16 @@ export const ItemListContainer = () => {
         });
 
         get.then((data) => {
-            setProducts(data);
+            setProduct(data[0]);
         });
     }, []);
 
+    if (!Product) return <div>Cargando...</div>;
+
     return( 
     <Container className="mt-4">
-        <ItemList Products = {Products}/>
+        <h1>{Product.name}</h1>
+        <img src={Product.img} alt="Img" />
     </Container>
     );
 }; 
