@@ -9,10 +9,10 @@ export const NavBar = () => {
     return( 
         <Navbar bg="primary" className="container-fluid" data-bs-theme="dark">
         <Container>
-            <Navbar.Brand href="#home">Mini Mercado</Navbar.Brand>
+            <Navbar.Brand href="#home">MVP Shop</Navbar.Brand>
             <Nav className="me-auto">
-            <Nav.Link href="/category/zapatillas">Zapatillas</Nav.Link>
-            <Nav.Link href="/category/remeras">Remeras</Nav.Link>
+            <Nav.Link to="/category/zapatillas" as={NavLink}>Zapatillas</Nav.Link>
+            <Nav.Link to="/category/remeras" as={NavLink}>Remeras</Nav.Link>
             </Nav>
             <CartWidget />
         </Container>
