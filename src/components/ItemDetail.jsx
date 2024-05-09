@@ -1,4 +1,6 @@
-import Container from 'react-bootstrap/Container';
+import Container from "react-bootstrap/Container";
+
+import{ ItemCount } from "./ItemCount";
 
 export const ItemDetail = ({Product}) =>{
     return(
@@ -10,6 +12,8 @@ export const ItemDetail = ({Product}) =>{
             <p>{Product.description}</p>
             <div>{`Stock ${Product.stock}`}</div>
             <div>{`Precio ${Product.price}`}</div>
+
+            <ItemCount/>
 </Container>
     )
 }
