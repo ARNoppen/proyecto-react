@@ -7,11 +7,12 @@ export const Item = ({Product}) =>
 
 
     <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={Product.img} />
+        <Card.Img variant="top" height="300" width="300" src={Product.image} />
         <Card.Body>
-            <Card.Title>{Product.name}</Card.Title>
-            <Card.Text> {Product.categoria} </Card.Text>
-            <Card.Text>{Product.precio}</Card.Text>
+            <Card.Title>{Product.title}</Card.Title>
+            <Card.Text> {Product.description} </Card.Text>
+            <Card.Text> {Product.categoryId} </Card.Text>
+            <Card.Text>{Product.price}</Card.Text>
             <Link to={`/Item/${Product.id}`}>
             <Button variant="primary">Agregar al carrito</Button>
             </Link>

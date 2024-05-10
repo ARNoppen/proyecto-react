@@ -4,7 +4,11 @@ import { createContext, useState } from "react";
 export const CartContext = createContext();
 
 export const Provider = ({children}) => {
-    const [items, setItems] = useState([{ name: true, id: 1}])
+    const [items, setItems] = useState([
+        { id: 1, name: "Zapatillas",price: 300},
+        { id: 2, name: "Remera",price: 500},
+        { id: 3, name: "Musculosa",price: 600}
+    ]);
 
     const clear = () => setItems([]);
 
@@ -21,4 +25,4 @@ export const Provider = ({children}) => {
     return  <CartContext.Provider value={{addItem, clear, items, removeItem}}> 
     {children} 
     </CartContext.Provider>
-}
+}   

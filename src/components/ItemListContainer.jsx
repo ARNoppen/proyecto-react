@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react" 
 
 import Container from 'react-bootstrap/Container';
-import data from "../data/Products.json";
 import {ItemList} from "./ItemList";
-import {useParams} from "react-router-dom"
+import {useParams} from "react-router-dom";
+import { getFirestore, getDocs, collection, query, where } from "firebase/firestore";
 
-console.log(data)
+
 
 export const ItemListContainer = () => {
     const [Products, setProducts] = useState([])
@@ -13,20 +13,26 @@ export const ItemListContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        const get = new Promise((resolve, reject) => {
-        setTimeout(() => resolve(data), 2000);
-        });
+        const db = getFirestore();  
 
-        get.then((data) => {
-            if(!id) {
-                setProducts(data);
-            } else{
-                const filtered = data.filter(p => p.categoria === id);
-                setProducts(filtered)
-            }
-            
+        let refCollection;
+
+        if(!id) {
+            refCollection = collection (db, "items");
+        }else{
+            refCollection = query(
+                collection (db, "items"), 
+                where("categoryId", "==", id ));
+        }
+
+        getDocs(refCollection).then((snapshot) => { 
+            setProducts(
+            snapshot.docs.map((doc) =>{
+                return{ id: doc.id, ...doc.data() };
+            })
+        );
         });
-    }, []);
+    }, [id]);
 
     return( 
     <Container className="mt-4">
