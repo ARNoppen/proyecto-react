@@ -12,9 +12,8 @@ export const ItemDetail = ({Product}) =>{
             <p>{Product.description}</p>
             <div>{`Stock ${Product.stock}`}</div>
             <div>{`Precio ${Product.price}`}</div>
-
-            <ItemCount/>
-</Container>
+            <ItemCount stock={Product.stock} />
+        </Container>
     )
 }
 
