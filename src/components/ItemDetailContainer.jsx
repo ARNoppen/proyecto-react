@@ -6,7 +6,7 @@ import { ItemDetail } from "./ItemDetail";
 
 
 export const ItemDetailContainer = () => {
-    const [Product, setProduct] = useState(null);
+    const [item, setItems] = useState(null);
 
     const { id } = useParams();
 
@@ -16,13 +16,13 @@ export const ItemDetailContainer = () => {
         const refDoc = doc(db, "items", id);
 
         getDoc(refDoc).then((snapshot)=> {
-            setProduct({ id: snapshot.id, ...snapshot.data() });
+            setItems({ id: snapshot.id, ...snapshot.data() });
         });
     }, [id]);
 
-    if (!Product) return <div>Cargando...</div>;
+    if (!item) return <div>Cargando...</div>;
 
     return( 
-        <ItemDetail Product={Product}/>
+        <ItemDetail item={item}/>
     );
 }; 

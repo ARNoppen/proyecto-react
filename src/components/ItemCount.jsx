@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const ItemCount = ({stock}) =>{
+export const ItemCount = ({ onAdd, stock }) =>{
     const[ count, setCount] = useState(1)
 
     const handleDecrease = () => {
@@ -11,13 +11,16 @@ export const ItemCount = ({stock}) =>{
         if(stock > count) setCount((prev) => prev + 1);
     }
 
+    const handleAdd = () => {
+        onAdd(count);
+    }
+
     return (
     <div className="d-flex"> 
         <div style={{ fontSize: "25px", padding: "5px 10px", marginRight: "10px", cursor: "pointer", fontWeight:"900px", color:"Blue" }} onClick={handleDecrease}>-</div>
             <input style={{border: "none"}} type="number" value={count} readOnly/>
         <div style={{ fontSize: "25px", padding: "5px 10px", marginRight: "10px", cursor: "pointer", fontWeight:"900px", color:"Blue"}} onClick={handleIncrease}>+</div>
-        <div><button style={{ padding: "10px 20px", fontSize: "16px", backgroundColor: "Blue", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }} type="button">Agregar al carrito</button></div>
-    
+        <button type="button" style={{ padding: "10px 20px", fontSize: "16px", backgroundColor: "Blue", color: "white", border: "none", borderRadius: "5px", cursor: "pointer"}} onClick={handleAdd}>Agregar al carrito</button>
     </div>
     );
 };

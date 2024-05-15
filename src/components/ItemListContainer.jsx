@@ -8,7 +8,7 @@ import { getFirestore, getDocs, collection, query, where } from "firebase/firest
 
 
 export const ItemListContainer = () => {
-    const [Products, setProducts] = useState([])
+    const [items, setItems] = useState([])
 
     const { id } = useParams();
 
@@ -26,7 +26,7 @@ export const ItemListContainer = () => {
         }
 
         getDocs(refCollection).then((snapshot) => { 
-            setProducts(
+            setItems(
             snapshot.docs.map((doc) =>{
                 return{ id: doc.id, ...doc.data() };
             })
@@ -36,7 +36,7 @@ export const ItemListContainer = () => {
 
     return( 
     <Container className="mt-4">
-        <ItemList Products = {Products}/>
+        <ItemList items = {items}/>
     </Container>
     );
 }; 
