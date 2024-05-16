@@ -1,14 +1,9 @@
-import { remove } from "firebase/database";
 import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
 export const Provider = ({children}) => {
-    const [items, setItems] = useState([
-        { id: 1, name: "Zapatillas",price: 300},
-        { id: 2, name: "Remera",price: 500},
-        { id: 3, name: "Musculosa",price: 600}
-    ]);
+    const [items, setItems] = useState([]);
 
     const clear = () => setItems([]);
 
@@ -17,10 +12,28 @@ export const Provider = ({children}) => {
         setItems(filtered); 
     };
 
-    const addItem = (item) => {
+    const addItem = (item, quantity) => {
+        const isExists = items.some((i) => i.id === item.id);
+
+        if(isExists){
+            const updateItems = items.map((i) => {
+                if(i.id === item.id){
+                    return{
+                        ...i,
+                        quantity: i.quantity + quantity,
+                    }
+                }else{
+                    return i;
+                }
+            });
+            setItems(updateItems);
+        }else{
+            setItems([...items, {...item,quantity}]); 
+        }
         
-        setItems([...items, item]); 
     };
+
+    console.log(items)
 
     return  <CartContext.Provider value={{addItem, clear, items, removeItem}}> 
     {children} 

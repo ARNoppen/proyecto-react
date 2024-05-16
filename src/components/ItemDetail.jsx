@@ -1,11 +1,14 @@
 import Container from "react-bootstrap/Container";
+import { useContext } from "react";
 
 import{ ItemCount } from "./ItemCount";
+import { CartContext } from "../contexts/CartContext";
 
 export const ItemDetail = ({item}) =>{
+const { addItem } = useContext(CartContext)
 
     const add = (quantity) =>{
-        console.log(item, quantity)
+        addItem(item, quantity)
     }
 
     return(
