@@ -8,7 +8,7 @@ import cart from "../assets/carrito-de-compras.png"
 export const CartWidget = () => {
     const {items} = useContext(CartContext);
 
-    const total = items.reduce((acc, elem) = acc + elem.quantity, 0);
+    const total = items.reduce((acc, elem) => acc + elem.quantity, 0);
 
     return( 
     <Link to={"/cart"}>
