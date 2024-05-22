@@ -39,11 +39,12 @@ export const Cart = () => {
             }
         })
         .finally(() => {
-            clear();
-            setValues(initialValues);
+        clear();
+        setValues(initialValues);
         });
     };
 
+    const handleClear = () => clear(id);
     const handleRemove = (id) => removeItem(id);
 
     return (
@@ -59,6 +60,14 @@ export const Cart = () => {
                     </ul>
                 );
             })};
+            <div>Total: {total()} </div>{
+                <button onClick={handleClear}> Limpiar </button>
+            }
+            {item?.length > 0 && (
+                <form>
+
+                </form>
+            )}
         </Container>
     ); 
 }
