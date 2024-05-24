@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { useState,useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
 import { getFirestore } from "firebase/firestore";
 import { Container } from "react-bootstrap";
 
@@ -58,12 +58,12 @@ export const Cart = () => {
                         <li> $ {i.price} </li>
                         <li onClick = {() => handleRemove()}>  X </li>
                     </ul>
-                );
-            })};
+                )
+            })}
             <div>Total: {total()} </div>{
                 <button onClick={handleClear}> Limpiar </button>
             }
-            {item?.length > 0 && (
+            {items?.length > 0 && (
                 <form>
 
                 </form>
